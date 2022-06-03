@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store</title>
+</head>
+
+<body>
+    <script src="product.js"></script>
+    <script src="store.js"></script>
+    <h1>Welcome to the store</h1>
+    <ul id="myStore"></ul>
+    <!-- Filtering form -->
+    <div class="locationForm">
+        <h1>Filtering options:</h1>
+        <div class="row mb-3">
+            <div class="col-sm-10">
+                <input type="text" id="name" placeholder="Enter product name">
+                <button class="btn btn-light" onclick="s.filterByName(document.getElementById('name').value)"
+                    id="filByName">filter by product name</button>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-10">
+                <h6>from</h6>
+                <input type="number" id="lowNum" placeholder="Enter minimum range">
+                <h6>to</h6>
+                <input type="number" id="highNum" placeholder="Enter maximum range">
+                <button class="btn btn-light"
+                    onclick="s.filterByPriceRange(document.getElementById('lowNum').value, document.getElementById('highNum').value)">Filtering
+                    by price range</button>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-10">
+                <select id="filByCategory" class="form-select">
+                    <option value="A">type A</option>
+                    <option value="B">type B</option>
+                    <option value="C">type C</option>
+                </select>
+                <br>
+                <button class="btn btn-light"
+                    onclick="s.filterByCategory(document.getElementById('filByCategory').value)">Filter by
+                    category</button>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-10">
+                <button class="btn btn-light" onclick="s.filterByQty()">Filter out of stock products (Under 5)</button>
+            </div>
+        </div>
+    </div>
+    <!-- Manager form -->
+    <div class="mngr">
+        <h2>Manager login:</h2>
+        <div class="mb-3">
+            <div class="col-sm-10">
+                <input type="password" name="password" id="managerPassword" placeholder="password">
+                <input type="button" onclick="login()" value="Login">
+                <p>The password is 111</p>
+            </div>
+        </div>
+        <div id="manager" style="visibility: hidden;">
+            <div class="row mb-3">
+                <div class="col-sm-10">
+                    <input type="text" id="nameI" placeholder="Enter product name">
+                    <input type="number" id="codeI" placeholder="Enter product code">
+                    <select id="CategoryI" class="form-select">
+                        <option value="A">type A</option>
+                        <option value="B">type B</option>
+                        <option value="C">type C</option>
+                    </select>
+                    <input type="number" id="priceI" placeholder="Enter product price">
+                    <input type="number" id="qtyI" placeholder="Enter product quantity">
+                    <button class="btn btn-light" onclick="
+                    s.addItem(new product(
+                        document.getElementById('nameI').value,
+                        document.getElementById('codeI').value,
+                        document.getElementById('CategoryI').value,
+                        document.getElementById('priceI').value,
+                        document.getElementById('qtyI').value
+                    ))
+                    ">Add this product</button>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-10">
+                    <input type="number" id="codeRmv" placeholder="Enter product code">
+                    <button class="btn btn-light"
+                        onclick="s.removeItem(document.getElementById('codeRmv').value)">Remove this product</button>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-10">
+                    <input type="text" id="codeP" placeholder="Enter product code">
+                    <input type="text" id="price" placeholder="Updated price">
+                    <button class="btn btn-light"
+                        onclick="s.updatePrice(document.getElementById('codeP').value, document.getElementById('price').value)">change
+                        the price</button>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-10">
+                    <input type="text" id="codeQ" placeholder="Enter product code">
+                    <input type="text" id="stock" placeholder="Updated quantity">
+                    <button class="btn btn-light"
+                        onclick="s.updateQTY(document.getElementById('codeQ').value, document.getElementById('stock').value)">change
+                        the QTY</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const myStore = document.getElementById("myStore");
+        const s = new store(myStore);
+
+        function login() {
+            if (document.getElementById("managerPassword").value == 111)
+                document.getElementById("manager").style.visibility = "visible";
+        }
+    </script>
+
+</body>
+
+</html>

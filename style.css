@@ -1,0 +1,17 @@
+.locationForm {
+    position: absolute;
+    left: 35%;
+    top: 3%;
+}
+
+.row {
+    border-color: gray;
+    border-style: solid;
+}
+
+.mngr {
+    position: absolute;
+    left: 70%;
+    right: 5%;
+    top: 3%;
+}
